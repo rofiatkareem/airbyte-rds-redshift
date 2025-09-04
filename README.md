@@ -3,7 +3,7 @@
 This project provisions AWS infrastructure with **Terraform** and deploys **Airbyte on Minikube** to replicate data from **Amazon RDS PostgreSQL** into **Amazon Redshift** for analytics. The goal is to simulate a production-style pipeline where transactional data in RDS is continuously moved into Redshift for reporting and analysis.
 
 ## Architecture
-![Architecture Diagram](docs/architecture_diagram.png)
+![Architecture Diagram](Docs/Architecture.jpg)
 
 - **Amazon RDS PostgreSQL** – Operational database (source)
 - **Airbyte on Minikube** – Replication service (incremental sync)

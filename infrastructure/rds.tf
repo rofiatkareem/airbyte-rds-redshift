@@ -14,30 +14,6 @@ resource "aws_ssm_parameter" "db_admin_password" {
   value = random_password.password.result
 }
 
-resource "aws_security_group" "rds_SG" {
-  name        = "allow_traffic"
-  description = "Allow inbound traffic and outbound"
-  vpc_id      = aws_vpc.rds_vpc.id
-
-  tags = {
-    Name = "rds-SG"
-  }
-}
-
-resource "aws_vpc_security_group_ingress_rule" "rds_ingress_rule" {
-  security_group_id = aws_security_group.rds_SG.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 5432
-  ip_protocol       = "TCP"
-  to_port           = 5432
-}
-
-resource "aws_vpc_security_group_egress_rule" "rds_egress_rule" {
-  security_group_id = aws_security_group.rds_SG.id
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "-1" # semantically equivalent to all ports,allow all types of ip-protocol
-}
-
 resource "aws_db_instance" "ecommerce_db" {
   allocated_storage         = 10
   db_name                   = "ecommerce"
